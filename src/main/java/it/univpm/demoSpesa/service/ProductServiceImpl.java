@@ -36,8 +36,10 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public void removeArticle() {
-		// TODO Auto-generated method stub
+	public void removeArticle(Product product) {
+		if(prodList.containsValue(product.getValue())) {
+			prodList.remove(product.getId(), product.getValue());
+		}
 
 	}
 
