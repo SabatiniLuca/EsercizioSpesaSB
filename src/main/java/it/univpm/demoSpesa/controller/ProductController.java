@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.univpm.demoSpesa.model.Product;
 import it.univpm.demoSpesa.service.ProductService;
+import it.univpm.demoSpesa.service.ProductServiceImpl;
 
 @RestController
 public class ProductController {
-@Autowired
-ProductService productService;
 
-	@RequestMapping(value="/hello",method= RequestMethod.GET)
+ProductService productService=new ProductServiceImpl();
+
+	@RequestMapping("/hello")
 	public ResponseEntity<String> hello() {
-	    return new ResponseEntity<>("Hello World!", HttpStatus.OK);
+	    return new ResponseEntity<>("Hello World!", HttpStatus.OK);//ResponseEntity?
 	}
 	
 	@RequestMapping(value="/prodotti", method= RequestMethod.GET)
@@ -35,7 +36,7 @@ ProductService productService;
 	
 	@RequestMapping(value="/prodotti", method=RequestMethod.DELETE)
 	public ResponseEntity<Object> removeArticle(@RequestBody Product product){
-		removeArticle(product);
+		productService.removeArticle(product);
 		return new ResponseEntity<>("Product removed succesfully", HttpStatus.OK);
 	}
 	

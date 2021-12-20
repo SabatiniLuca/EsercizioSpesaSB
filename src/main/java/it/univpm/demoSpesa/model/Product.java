@@ -3,7 +3,7 @@ package it.univpm.demoSpesa.model;
 public class Product {
 	private int id;
 	private String value;
-	private int price;
+	private int price;//no costruttore?
 	
 	
 	public int getId() {
