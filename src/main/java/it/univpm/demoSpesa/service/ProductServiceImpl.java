@@ -3,7 +3,7 @@
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicLong;
+//import java.util.concurrent.atomic.AtomicLong;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import it.univpm.demoSpesa.model.Product;
 @Service
 public class ProductServiceImpl implements ProductService {
 	private static Map<Integer,Product> prodList= new HashMap<>();
-	private final AtomicLong counter=new AtomicLong();
+	
 	
 	public ProductServiceImpl() {
 		
@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void addArticle(Product product) {
-		if(prodList.containsValue(product.getValue())) {
+		if(prodList.containsValue(product)) {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,"existing pruduct..");
 		}
 		prodList.put(product.getId(), product);
@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public void removeArticle(Product product) {
-		if(prodList.containsValue(product.getValue())) {
+		if(prodList.containsValue(product)) {
 			prodList.remove(product.getId(), product.getValue());
 		}
 
@@ -45,8 +45,11 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public int getTotal() {
-		// TODO Auto-generated method stub
-		return 0;
+		int somma=0;
+		for (int i=0;i<prodList.size();i++) {
+			somma+=prodList.get(i).getPrice();
+		}
+		return somma;
 	}
 
 }

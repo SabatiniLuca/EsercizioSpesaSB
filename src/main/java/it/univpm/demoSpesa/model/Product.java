@@ -3,6 +3,7 @@ package it.univpm.demoSpesa.model;
 public class Product {
 	private int id;
 	private String value;
+	private int price;
 	
 	
 	public int getId() {
@@ -16,6 +17,12 @@ public class Product {
 	}
 	public void setValue(String value) {
 		this.value = value;
+	}
+	public int getPrice() {
+		return price;
+	}
+	public void setPrice(int price) {
+		this.price = price;
 	}
 	
 
